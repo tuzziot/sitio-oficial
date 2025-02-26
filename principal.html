@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Electricidad e IoT</title>
+    <style>
+        :root {
+            --background-color: #141313;
+            --text-color: #ffffff;
+            --accent-color: #00a8ff;
+            --card-background: #242323;
+            --card-hover: #343434;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            max-height: 80px; /* Altura máxima de 80px */
+            overflow: hidden; /* Evita que el contenido sobresalga */
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background-image: url('TLogo.png');
+            background-size: cover;
+            background-position: center;
+            filter: drop-shadow(0 0 5px rgb(255, 220, 249)); /* Resplandor */
+                }
+        
+        .title-logo-placeholder {
+            width: 250px;
+            height: 60px;
+            background-image: url('logo.png');
+            background-size: cover;
+            background-position: center;
+            filter: drop-shadow(0 0 5px rgb(255, 220, 249)); /* Resplandor */
+                }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-color), #a64dff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 5%;
+            margin-bottom: 4rem;
+        }
+        
+        .service-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 168, 255, 0.2);
+            background-color: var(--card-hover);
+        }
+        
+        .service-card h3 {
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-align: center;
+        }
+        
+        .img-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 168, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .service-description {
+            padding: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .contact-section {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--accent-color);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        .industrial {
+            object-fit: cover; /* Hace que la imagen llene el espacio sin deformarse */
+            object-position: 130% center; 
+            width: 700px; /* Mantiene el ancho */
+            height: 500px; /* Mantiene la altura */
+  }
+
+  .pct {
+            object-fit: cover; /* Hace que la imagen llene el espacio sin deformarse */
+            object-position: 250% center; 
+            width: 700px; /* Mantiene el ancho */
+            height: 500px; /* Mantiene la altura */
+  }
+
+  .iot {
+            object-fit: cover; /* Hace que la imagen llene el espacio sin deformarse */
+            object-position: 375% center; 
+            width: 700px; /* Mantiene el ancho */
+            height: 500px; /* Mantiene la altura */
+           
+  }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div id="triangulo" class="logo-placeholder"></div>
+            <div  class="title-logo-placeholder"></div>
+        </div>
+        <nav>
+            <a href="#servicios" style="color: var(--text-color); text-decoration: none; margin-left: 1rem;">Servicios</a>
+            <a href="#contacto" style="color: var(--text-color); text-decoration: none; margin-left: 1rem;">Contacto</a>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Soluciones Eléctricas e IoT</h1>
+        <p>Somos una pequeña empresa en crecimiento, especializada en servicios profesionales de electricidad, automatización y tecnología 
+            IoT para proyectos residenciales e industriales. Nuevos en el mercado, pero con una base sólida de conocimiento técnico 
+            y un equipo altamente capacitado, ofrecemos soluciones de alta calidad, eficientes y personalizadas para cada cliente, 
+            y al mejor precio. Nos enorgullece combinar la innovación con un servicio cercano y dedicado, demostrando nuestro potencial 
+            para enfrentar desafíos y superar expectativas. ¡Confía en nosotros para llevar tus proyectos al siguiente nivel!</p>
+    </section>
+    
+    <div class="services-grid" id="servicios">
+        <div class="service-card">
+            <h3>Proyectos de Electricidad Domiciliaria</h3>
+            <img src="img/domiciliario.jpg" alt="Imagen Representativa" width="700" height="500">
+            <div class="service-description">
+                <p>Ofrecemos soluciones eléctricas integrales para tu hogar, garantizando máxima seguridad y eficiencia. Nuestros servicios incluyen:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>Proyectos de electricidad en viviendas y edificios en altura</li>
+                <li>Cálculos eléctricos</li>
+                <li>Planilla de cargas</li>
+                <li>iluminación</li>
+                <li>Diagnóstico de fugas y fallas eléctricas</li>
+                </ul>
+                
+                </div>
+        </div>
+        
+        <div class="service-card">
+            <h3>Proyectos de Electricidad Industrial</h3>
+            <img src="img/industrial.jpg" alt="Imagen Representativa" width="900" height="500" class="industrial">
+            <div class="service-description">
+                <p>Especialistas en proyectos eléctricos industriales: seguridad, eficiencia y cumplimiento normativo garantizados. Nuestros servicios incluyen:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>Proyectos de Electricidad industrial</li>
+                <li>Pre-dimensionado y diseño de tableros</li>
+                <li>Calculo y pre-dimensionado de conductores eléctricos</li>
+                <li>Planillas de cargas</li>
+                <li>Calculo y armado de Puesta a Tierra</li>
+		<li>Montaje eléctrico</li>
+		<li>Corrección del CosFi</li>
+		<li>Diseño de acometidas</li>
+                </ul>
+                
+                </div>
+        </div>
+        
+        <div class="service-card">
+            <h3>Proyectos de Automatización Industrial</h3>
+            <img src="img/automatismo.jpg" alt="Imagen Representativa" width="1200" height="500" class="industrial">
+            <div class="service-description">
+                <p>Transformamos tus procesos industriales con sistemas de automatización avanzados, aumentando la eficiencia y seguridad. Nuestros servicios incluyen:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>Automatización con sistemas PLC y HMI</li>
+                <li>Control y monitoreo en tiempo real con SCADA</li>
+                <li>Instrumentación y control de procesos industriales</li>
+                <li>Sistemas de seguridad industrial a medida</li>
+                <li>Modernización de máquinas y equipos (retrofitting)</li>
+                </ul>
+                
+                </div>
+        </div>
+        
+        <div class="service-card">
+            <h3>Proyectos de IoT</h3>
+            <img src="img/iot.jpg" alt="Imagen Representativa" width="1200" height="500" class="iot">
+            <div class="service-description">
+                <p>Llevamos la innovación a tu hogar o industria con soluciones IoT personalizadas. Conectamos, monitoreamos y optimizamos tus procesos. Nuestros servicios incluyen:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>Monitoreo y control remoto de sistemas</li>
+                <li>Instalación de dispositivos inteligentes (sensores y actuadores)</li>
+                <li>Plataformas centralizadas para gestión inteligente</li>
+                <li>Ahorro energético con tecnología IoT</li>
+                <li>Seguridad y vigilancia inteligente</li>
+                </ul>
+                
+                </div>
+        </div>
+        
+        <div class="service-card">
+            <h3>Diseño y Armados de PCB</h3>
+            <img src="img/pcb.jpg" alt="Imagen Representativa" width="1200" height="500" class="industrial">
+            <div class="service-description">
+                <p>Creamos circuitos electrónicos personalizados para adaptarnos a tus necesidades. Desde el diseño hasta la fabricación, te acompañamos en cada paso. Nuestros servicios incluyen:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>Diseño de esquemas electrónicos a medida</li>
+                <li>Prototipado y pruebas de circuitos</li>
+                <li>Diseño de PCB con tecnología avanzada</li>
+                <li>Fabricación y ensamblaje de placas de circuito impreso</li>
+                <li>Mejora y actualización de circuitos existentes</li>
+                </ul>
+                
+                </div>
+        </div>
+        
+        <div class="service-card">
+            <h3>PCT de Epec</h3>
+            <img src="img/pct.jpg" alt="Imagen Representativa" width="1200" height="500" class="pct">
+            <div class="service-description">
+                <p>Simplificamos el proceso del Presupuesto de Carga Total (PCT) para la habilitación eléctrica de grandes clientes. Nos encargamos de todo, desde la documentación hasta la aprobación final. Nuestros servicios incluyen:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>Asesoramiento técnico en normativas y requisitos</li>
+                <li>Elaboración y presentación de documentación técnica</li>
+                <li>Gestión integral del trámite ante Epec</li>
+                <li>Seguimiento personalizado hasta la habilitación</li>
+                <li>Coordinación con contratistas y proveedores</li>
+                </ul>
+                
+                </div>
+        </div>
+        
+        <div class="service-card">
+            <h3>Dirección e Inspección de Obras</h3>
+            <img src="img/direccion.jpg" alt="Imagen Representativa" width="1200" height="500" class="pct">
+            <div class="service-description">
+                <p>Aseguramos la calidad y seguridad de tu proyecto eléctrico con una supervisión técnica integral. Cumplimos con las normativas y garantizamos resultados impecables. Nuestros servicios incluyen:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>Supervisión en todas las etapas de construcción</li>
+                <li>Verificación de planos y especificaciones técnicas</li>
+                <li>Control de calidad en materiales y procesos de instalación</li>
+                <li>Informes periódicos del avance de obra</li>
+                <li>Certificación final de las instalaciones eléctricas</li>
+                </ul>
+                
+                </div>
+        </div>
+
+        <div id="4.0" class="service-card">
+            <h3>Smart City 4.0     Ciudad inteligente</h3>
+            <img src="img/semaforo.jpg" alt="Imagen Representativa" width="700" height="500" class="industrial">
+            <div class="service-description">
+                <p>Transformamos ciudades en espacios inteligentes y eficientes con tecnología de vanguardia. Nuestra especialidad:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>Semáforos inteligentes programables por computadora o móvil</li>
+                <li>Sistema de IA para cálculo automático de intensidad vehicular</li>
+                <li>Optimización del flujo de tráfico en tiempo real</li>
+                <li>Reducción de congestiones y tiempos de espera</li>
+                <li>Integración con sistemas de monitoreo urbano</li>
+                <li>Sitema de control de calidad del aire</li>
+                <li>Sitema de control de calidad del agua</li>
+                <li>Automatización y control en redes de distribución sanitarias</li>
+                <li>Alumbrado inteligente</li>
+                <li>mas...</li>
+                </ul>
+                </div>
+        </div>
+
+    </div>
+    
+    <section class="contact-section" id="contacto">
+        <h2>Contáctenos</h2>
+        <p>Estamos listos para ayudarle con su próximo proyecto. No dude en comunicarse con nosotros para una consulta personalizada.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i>📧</i>
+                <span>tuzziotok@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📧</i>
+                <span>davidtuzzi@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📱</i>
+                <span>WhatsApp: (3541)389476</span>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Servicios de Electricidad e IoT. Todos los derechos reservados.</p>
+    </footer>
+
+
+
+    <script>
+        
+document.getElementById('4.0').addEventListener('click', function() {
+    window.location.href = 'Smart_city.html';
+});
+    </script>
+
+
+</body>
+</html>
