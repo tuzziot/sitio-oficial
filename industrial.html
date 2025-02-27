@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Electricidad e IoT</title>
+    <style>
+        :root {
+            --background-color: #141313;
+            --text-color: #ffffff;
+            --accent-color: #00a8ff;
+            --card-background: #242323;
+            --card-hover: #343434;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            max-height: 80px; /* Altura máxima de 80px */
+            overflow: hidden; /* Evita que el contenido sobresalga */
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background-image: url('TLogo.png');
+            background-size: cover;
+            background-position: center;
+            filter: drop-shadow(0 0 5px rgb(255, 220, 249)); /* Resplandor */
+                }
+        
+        .title-logo-placeholder {
+            width: 250px;
+            height: 60px;
+            background-image: url('logo.png');
+            background-size: cover;
+            background-position: center;
+            filter: drop-shadow(0 0 5px rgb(255, 220, 249)); /* Resplandor */
+                }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-color), #a64dff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 2.0rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-color), #a64dff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 5%;
+    margin-bottom: 4rem;
+    width: 70%;  /* O cualquier porcentaje adecuado */
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 400px;
+    
+}
+        
+        .service-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 168, 255, 0.2);
+            background-color: var(--card-hover);
+        }
+        
+        .service-card h3 {
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-align: center;
+        }
+        
+        .img-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 168, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .service-description {
+            padding: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .contact-section {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--accent-color);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+
+
+        .scada {
+    width: 100%; /* Adapta el ancho al 100% de la pantalla */
+    height: 100vh; /* Ajusta la altura a toda la altura de la ventana */
+    object-fit: contain; /* Hace que la imagen se ajuste completamente sin recortes */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+}
+
+
+.descargar-contenedor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+#descargar {
+            background-color: #386d88; /* Color de fondo moderno */
+            color: white; /* Color del texto */
+            border: none; /* Elimina los bordes */
+            padding: 15px 30px; /* Espaciado interno */
+            font-size: 18px; /* Tamaño de la fuente */
+            border-radius: 50px; /* Bordes redondeados */
+            cursor: pointer; /* Muestra el cursor en forma de mano */
+            transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+        }
+
+        #descargar:hover {
+            background-color: #1e4e66; /* Color de fondo al pasar el ratón */
+            transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+        }
+
+        #descargar:active {
+            transform: scale(0.95); /* Efecto al hacer clic */
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div id="triangulo" class="logo-placeholder"></div>
+            <div  class="title-logo-placeholder"></div>
+        </div>
+        <nav>
+            <a href="#servicios" style="color: var(--text-color); text-decoration: none; margin-left: 1rem;">Servicios</a>
+            <a href="#contacto" style="color: var(--text-color); text-decoration: none; margin-left: 1rem;">Contacto</a>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Electricidad Industrial</h1>
+        <p>En TuzzIot, nos especializamos en llevar tus proyectos eléctricos al siguiente nivel. Somos tu aliado estratégico en el diseño, 
+            implementación y optimización de sistemas eléctricos industriales, garantizando eficiencia, seguridad y cumplimiento de los más 
+            altos estándares técnicos.</p>
+        <p><br></p>
+        <p>Nuestro equipo de expertos se encarga de transformar tus necesidades en soluciones innovadoras y funcionales. 
+            Desde el cálculo y diseño hasta la ejecución y mantenimiento, cubrimos todas las etapas de tus proyectos eléctricos con precisión 
+            y profesionalismo.</p>
+
+        <p><br></p>
+
+        
+
+        <img src="img/fto/industrial2.jpg" alt="Imagen Representativa" class="scada"></div>
+        <p><br></p>
+
+        <p style="font-size: 25px;">¿Qué ofrecemos?</p>
+        <p><br></p>
+        <p>Diseño y planificación eléctrica: Desarrollamos proyectos eléctricos y de señales débiles adaptados a tus requerimientos, 
+            incluyendo cálculos precisos, planillas de cargas y predimensionado de tendidos.</p>
+        <p><br></p>
+        <p>Sistemas de puesta a tierra: Garantizamos la seguridad y eficiencia de tus instalaciones con diseños robustos y certificados.</p>
+        <p><br></p>
+        <p>Tableros eléctricos: Diseñamos y armamos tableros eléctricos a medida, optimizando el control y la distribución de energía en tus instalaciones.</p>
+        <p><br></p>
+        <p>Montaje eléctrico: Realizamos instalaciones y montajes con altos estándares de calidad, asegurando un funcionamiento óptimo desde el primer día.</p>
+        <p><br></p>
+        <p>Inspección y asesoramiento técnico: Brindamos servicios de inspección y consultoría para garantizar que tus sistemas cumplan con las normativas vigentes y operen de manera segura.</p>
+        <p><br></p>
+        <p>Reacondicionamiento eléctrico: Modernizamos instalaciones antiguas, mejorando su eficiencia y adaptándolas a las necesidades actuales.</p>
+        <p><br></p>
+        <p><br></p>
+        <p style="color: #5d4279; font-size: 25px; font-weight: bold;">En TuzzIot, entendemos que cada proyecto es único. Por eso, nos comprometemos a ofrecer soluciones personalizadas, innovadoras y sostenibles, respaldadas por un servicio de excelencia y un trato cercano.</p>
+        <p><br></p>
+        <p><br></p>
+
+        <img src="img/fto/industrial3.jpg" alt="Imagen Representativa" class="scada"></div>
+        <img src="img/fto/industrial6.jpg" alt="Imagen Representativa" class="scada"></div>
+        <img src="img/fto/industrial5.jpg" alt="Imagen Representativa" class="scada"></div>
+      
+    </section>
+
+>
+
+
+        <div class="services-grid" id="servicios">
+            <div class="service-card">
+
+               
+
+                <p style="font-size: 21px; margin-top: 1rem; margin-left: 1.5rem; margin-right: 1.5rem; text-align: center;">Descubre algunos de nuestros proyectos eléctricos destacados.</p>
+                <div class="descargar-contenedor">
+                <button id="descargar">Descargar</button></div>
+                <p><br></p>
+
+                
+
+                   
+
+         
+
+            </div></div>
+
+
+            
+
+        
+                
+        
+
+
+    </div>
+    
+    <section class="contact-section" id="contacto">
+        <h2>Contáctenos</h2>
+        <p>Estamos listos para ayudarle con su próximo proyecto. No dude en comunicarse con nosotros para una consulta personalizada.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i>📧</i>
+                <span>tuzziotok@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📧</i>
+                <span>davidtuzzi@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📱</i>
+                <span>WhatsApp: (3541)389476</span>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Servicios de Electricidad e IoT. Todos los derechos reservados.</p>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    
+    document.getElementById("descargar").addEventListener("click", function() {
+    window.open("https://drive.google.com/drive/folders/19TB8Xn-3AXNMzbgmMEZh33y4zZo_qlnR?usp=sharing", "_blank");
+  });
+
+//https://drive.google.com/drive/folders/19TB8Xn-3AXNMzbgmMEZh33y4zZo_qlnR?usp=sharing
+</script>
+
+
+
+
+</body>
+</html>

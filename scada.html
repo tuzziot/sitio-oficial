@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Electricidad e IoT</title>
+    <style>
+        :root {
+            --background-color: #141313;
+            --text-color: #ffffff;
+            --accent-color: #00a8ff;
+            --card-background: #242323;
+            --card-hover: #343434;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            max-height: 80px; /* Altura máxima de 80px */
+            overflow: hidden; /* Evita que el contenido sobresalga */
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background-image: url('TLogo.png');
+            background-size: cover;
+            background-position: center;
+            filter: drop-shadow(0 0 5px rgb(255, 220, 249)); /* Resplandor */
+                }
+        
+        .title-logo-placeholder {
+            width: 250px;
+            height: 60px;
+            background-image: url('logo.png');
+            background-size: cover;
+            background-position: center;
+            filter: drop-shadow(0 0 5px rgb(255, 220, 249)); /* Resplandor */
+                }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-color), #a64dff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 2.0rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-color), #a64dff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 5%;
+    margin-bottom: 4rem;
+    width: 70%;  /* O cualquier porcentaje adecuado */
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 400px;
+    
+}
+        
+        .service-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 168, 255, 0.2);
+            background-color: var(--card-hover);
+        }
+        
+        .service-card h3 {
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-align: center;
+        }
+        
+        .img-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 168, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .service-description {
+            padding: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .contact-section {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--accent-color);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+
+
+        .scada {
+    width: 100%; /* Adapta el ancho al 100% de la pantalla */
+    height: 100vh; /* Ajusta la altura a toda la altura de la ventana */
+    object-fit: contain; /* Hace que la imagen se ajuste completamente sin recortes */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+}
+
+
+
+
+
+
+/*------------------------------------PLC S7-1200---------------------*/
+
+.container {
+   
+    max-width: 920px; /* Limita el ancho máximo */
+    position: relative;
+    border: 0px solid #444;
+    
+    
+    border-radius: 10px;
+    margin: 0 auto; /* Esto centra el contenedor horizontalmente */
+}
+        .PLC {
+    width: 600px; /* Ancho fijo en píxeles */
+    height: 400px; /* Altura fija en píxeles */
+    background-image: url('img/s7-1200.png');
+    background-size: contain; /* Mantén la proporción de la imagen */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: none;
+    border: 0px solid #333;
+    margin: 0 auto; /* Centrado horizontal */
+    position: relative;
+}
+
+         .Leds {
+        width: 7px;
+        height: 7px;
+        background-color: #262522;
+        position: absolute;
+        border: 0px solid #444;
+        /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);*/
+    }
+
+
+
+    #I0 {
+        top: 126.4px;
+        left: 385.5px;
+        box-shadow: 0 0 10px 5px none;
+        background-color: #1b1c1b;
+    }
+
+    #I1 {
+        top: 126.4px;
+        left: 398.5px;
+        background-color: #1b1c1b;
+    }
+
+    #I2 {
+        top: 126.4px;
+        left: 411.5px;
+        background-color: #1b1c1b;
+    }
+     #I3 {
+        top: 126.4px;
+        left: 424.5px;
+        background-color: #1b1c1b;
+    }
+     #I4 {
+        top: 126.4px;
+        left: 437.5px;
+        background-color: #1b1c1b;
+    }
+     #I5 {
+        top: 126.4px;
+        left: 450.5px;
+        background-color: #1b1c1b;
+    }
+     #I6 {
+        top: 126.4px;
+        left: 463.5px;
+        background-color: #1b1c1b;
+    }
+      #I7 {
+        top: 126.4px;
+        left: 476.5px;
+        background-color: #1b1c1b;
+    }
+
+
+      #Q0 {
+        top: 256.4px;
+        left: 385.5px;
+        background-color: #1b1c1b;
+    }
+    #Q1 {
+        top: 256.4px;
+        left: 398.5px;
+        background-color: #1b1c1b;
+    }
+
+    #Q2 {
+        top: 256.4px;
+        left: 411.5px;
+        background-color: #1b1c1b;
+    }
+     #Q3 {
+        top: 256.4px;
+        left: 424.5px;
+        background-color: #1b1c1b;
+    }
+     #Q4 {
+        top: 256.4px;
+        left: 437.5px;
+        background-color: #1b1c1b;
+    }
+     #Q5 {
+        top: 256.4px;
+        left: 450.5px;
+        background-color: #1b1c1b;
+    }
+     #Q6 {
+        top: 256.4px;
+        left: 463.5px;
+        background-color: #1b1c1b;
+    }
+      #Q7 {
+        top: 256.4px;
+        left: 476.5px;
+        background-color: #1b1c1b;
+    }
+
+
+
+         #Run {
+        top: 126.4px;
+        left: 125.5px;
+        background-color: #cfa70a;
+        box-shadow: 0 0 10px 5px #cfa70a;
+    }
+
+          #Error {
+        top: 126.4px;
+        left: 138.5px;
+        background-color: #1b1c1b;
+        box-shadow: 0 0 10px 5px none;
+    }
+
+
+
+
+        #Line {
+        top: 285.4px;
+        left: 125.5px;
+        background-color: #cfa70a;
+        box-shadow: 0 0 10px 5px #cfa70a;
+    }
+
+
+
+       #Rx {
+        top: 305.4px;
+        left: 125.5px;        
+        animation: blink 0.05s infinite alternate;
+    } 
+    @keyframes blink {
+    0% {
+        background-color: #cfa70a;
+        box-shadow: 0 0 10px 5px #cfa70a;
+    }
+    100% {
+        background-color: #262522;
+        box-shadow: 0 0 10px 5px none;
+    }
+}
+
+
+
+
+
+.boton-container button {
+    background-color: #447080; /* Color de fondo */
+    border: none; /* Sin borde */
+    color: white; /* Color del texto */
+    padding: 15px 32px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como inline-block */
+    font-size: 16px; /* Tamaño del texto */
+    margin: 10px; /* Márgenes entre botones */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+    transition: all 0.3s ease; /* Transición para suavidad */
+     margin-bottom: 35px;
+}
+
+.boton-container button:hover {
+    background-color: #45a049; /* Color al pasar el cursor */
+    transform: scale(1.1); /* Efecto de agrandamiento */
+}
+
+.boton-container button:active {
+    background-color: #3e8e41; /* Color al hacer clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra al hacer clic */
+    transform: scale(0.98); /* Reducir tamaño al hacer clic */
+}
+
+/* Personalización específica para cada botón */
+#BI0 {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+#BI1 {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+#BI2 {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+#BI3 {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+#BI4 {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+#BI5 {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+#BI6 {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+#BI7 {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div id="triangulo" class="logo-placeholder"></div>
+            <div  class="title-logo-placeholder"></div>
+        </div>
+        <nav>
+            <a href="#servicios" style="color: var(--text-color); text-decoration: none; margin-left: 1rem;">Servicios</a>
+            <a href="#contacto" style="color: var(--text-color); text-decoration: none; margin-left: 1rem;">Contacto</a>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Automatismo Industrial</h1>
+        <p>En TuzzIot, nos especializamos en llevar la eficiencia y la innovación a tu industria a través del Automatismo Industrial. 
+            Somos expertos en transformar procesos manuales en sistemas automatizados inteligentes, optimizando la productividad y reduciendo 
+            costos operativos</p>
+        <p><br></p>
+        <p style="font-size: 25px;">¿Qué es el Automatismo Industrial?</p>
+        <p><br></p>
+        <p>El Automatismo Industrial es el conjunto de tecnologías y sistemas que permiten controlar y operar maquinarias y procesos de 
+            forma automática, sin necesidad de intervención humana constante. Desde la automatización de tareas simples hasta la integración 
+            de sistemas complejos, en TuzzIot diseñamos soluciones a medida para que tu industria funcione de manera más eficiente, segura 
+            y rentable.</p>
+        <p><br></p>
+
+        <img src="img/plc.jpg" alt="Imagen Representativa" class="scada"></div>
+      
+    </section>
+
+>
+
+
+        <div class="services-grid" id="servicios">
+            <div class="service-card">
+
+                <h3>Nuestros Servicios</h3>
+
+                <p style="font-size: 21px; margin-top: 1rem; margin-left: 1.5rem; margin-right: 1.5rem; text-align: center;">En TuzzIot 
+                    ofrecemos un amplio abanico de servicios para cubrir todas las necesidades de tu industria:</p>
+
+                <p><br></p>
+
+                <ul style="margin-top: 1rem; margin-left: 1.5rem; margin-right: 1.5rem;">
+                <li>AUTOMATISMO CABLEADO: Diseño e implementación de sistemas de control cableados robustos y confiables.</li>
+                <p><br></p>
+                <li>SISTEMAS DE BOMBEO: Automatización y control de sistemas de bombeo para maximizar su eficiencia y durabilidad.</li>
+                <p><br></p>
+                <li>TABLEROS ELÉCTRICOS: Fabricación y montaje de tableros eléctricos personalizados para cualquier aplicación industrial.</li>
+                <p><br></p>
+                <li>DISTRIBUCIÓN DE CONDUCTORES: Instalación profesional de redes de conductores para garantizar un flujo eléctrico seguro y eficiente.</li>
+                <p><br></p>
+                <li>INSTALACIÓN DE ACTUADORES Y SENSORES: Integración de componentes clave para la automatización de procesos.</li>
+                <p><br></p>
+                <li>ARMADO DE TABLEROS DE MANDO: Creación de tableros de control adaptados a tus necesidades específicas.</li>
+                <p><br></p>
+                <li>PROGRAMACIÓN DE PLC Y SCADA: Desarrollo de software para controladores lógicos programables (PLC) y sistemas de supervisión (SCADA) para monitoreo y control en tiempo real.</li>
+                <p><br></p>
+                <li>INTEGRACIÓN DE TECNOLOGÍA ANTIGUA A LA INDUSTRIA 4.0: Modernizamos tus sistemas obsoletos, conectándolos a la era digital para un monitoreo remoto y una gestión inteligente.</li>
+                <p><br></p>
+
+                   
+
+         
+
+            </div></div>
+
+
+            <section class="hero">
+
+                <h2 style="margin-top: -120px;">Simulacion de sistema scada industrial</h2>
+                <img src="img/Scada2.gif" alt="Imagen Representativa" class="scada"></div>
+                
+                <h2 style="margin-top: 100px;"">La Industria 4.0 y la Modernización de Sistemas</h2>
+                <p><br></p>
+                <p>La Industria 4.0 representa la cuarta revolución industrial, donde la conectividad, el Internet de las Cosas (IoT) 
+                    y la analítica de datos se fusionan para crear fábricas inteligentes. En TuzzIot, ayudamos a las empresas a dar el 
+                    salto hacia esta nueva era, integrando tecnologías modernas con sistemas antiguos.</p>
+                <p><br></p>
+                <p style="font-size: 25px;">¿Cómo lo hacemos?</p>
+                <p><br></p>
+                <li>Adaptación de PLC Antiguos: Utilizamos protocolos como Modbus para conectar tus PLC antiguos a sistemas modernos, permitiendo la recolección de datos y el control remoto.</li>
+                <li>Monitoreo Remoto: Implementamos soluciones que te permiten supervisar y controlar tus procesos desde cualquier lugar, en tiempo real.</li>
+                <li>Optimización de Procesos: Analizamos tus sistemas actuales y proponemos mejoras para aumentar la eficiencia y reducir costos.</li>
+                <p><br></p>
+                <p>Si buscas llevar tu industria al siguiente nivel, TuzzIot es tu aliado estratégico.</p>
+                <p>¡Contáctanos hoy mismo y descubre cómo podemos transformar tus procesos!</p>
+
+
+    
+            
+
+
+               
+        
+    
+                    <h2 style="margin-top: 100px;">Control a distancia de plc S7-1200</h2> 
+
+                    <div class="container">
+                        <div class="PLC">
+                            <div class="Leds" id="I0"></div>
+                            <div class="Leds" id="I1"></div>
+                            <div class="Leds" id="I2"></div>
+                            <div class="Leds" id="I3"></div>
+                            <div class="Leds" id="I4"></div>
+                            <div class="Leds" id="I5"></div>
+                            <div class="Leds" id="I6"></div>
+                            <div class="Leds" id="I7"></div>
+                
+                            <div class="Leds" id="Q0"></div>
+                            <div class="Leds" id="Q1"></div>
+                            <div class="Leds" id="Q2"></div>
+                            <div class="Leds" id="Q3"></div>
+                            <div class="Leds" id="Q4"></div>
+                            <div class="Leds" id="Q5"></div>
+                            <div class="Leds" id="Q6"></div>
+                            <div class="Leds" id="Q7"></div>
+                
+                            <div class="Leds" id="Run"></div>
+                            <div class="Leds" id="Error"></div>
+                
+                            <div class="Leds" id="Line"></div>
+                            <div class="Leds" id="Rx"></div>
+                
+                        </div>
+
+                        <h2>ENTRADAS</h2>
+                        <div class="boton-container">
+                        <button id="BI0">I0</button>
+                        <button id="BI1">I1</button>
+                        <button id="BI2">I2</button>
+                        <button id="BI3">I3</button>
+                        <button id="BI4">I4</button>
+                        <button id="BI5">I5</button>
+                        <button id="BI6">I6</button>
+                        <button id="BI7">I7</button>
+                        </div>
+                    </div>
+                
+                    </div>
+                    
+                </section>
+
+        
+                
+        
+
+
+    </div>
+    
+    <section class="contact-section" id="contacto">
+        <h2>Contáctenos</h2>
+        <p>Estamos listos para ayudarle con su próximo proyecto. No dude en comunicarse con nosotros para una consulta personalizada.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i>📧</i>
+                <span>tuzziotok@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📧</i>
+                <span>davidtuzzi@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📱</i>
+                <span>WhatsApp: (3541)389476</span>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Servicios de Electricidad e IoT. Todos los derechos reservados.</p>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function toggleStyles(buttonId, elementId) {
+    const button = document.getElementById(buttonId);
+    const element = document.getElementById(elementId);
+    
+    button.addEventListener('click', () => {
+        if (element.style.backgroundColor === 'rgb(10, 207, 36)') {
+            // Reset styles
+            element.style.backgroundColor = '#1b1c1b';
+            element.style.boxShadow = 'none';
+        } else {
+            // Apply styles
+            element.style.backgroundColor = '#0acf24';
+            element.style.boxShadow = '0 0 10px 5px #0acf24';
+        }
+    });
+}
+
+// Call the function for each pair of button and element
+toggleStyles('BI0', 'I0');
+toggleStyles('BI1', 'I1');
+toggleStyles('BI2', 'I2');
+toggleStyles('BI3', 'I3');
+toggleStyles('BI4', 'I4');
+toggleStyles('BI5', 'I5');
+toggleStyles('BI6', 'I6');
+toggleStyles('BI7', 'I7');
+
+
+
+
+//salidas------------------------------------------------
+
+function aplicarEstilosAleatorios() {
+    const ids = ['Q0', 'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7'];
+
+    ids.forEach(id => {
+        const elemento = document.getElementById(id);
+        const random = Math.random() < 0.5;
+
+        if (random) {
+            elemento.style.backgroundColor = '#0acf24';
+            elemento.style.boxShadow = '0 0 10px 5px #0acf24';
+        } else {
+            elemento.style.backgroundColor = '#1b1c1b';
+            elemento.style.boxShadow = 'none';
+        }
+    });
+}
+
+setInterval(aplicarEstilosAleatorios, 30000); // Ejecuta la función cada 1 minuto
+
+</script>
+
+
+
+
+</body>
+</html>

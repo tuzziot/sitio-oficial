@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Electricidad e IoT</title>
+    
+     <!-- Enlace a la fuente desde Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --background-color: #141313;
+            --text-color: #ffffff;
+            --accent-color: #00a8ff;
+            --card-background: #242323;
+            --card-hover: #343434;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            max-height: 80px; /* Altura máxima de 80px */
+            overflow: hidden; /* Evita que el contenido sobresalga */
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background-image: url('TLogo.png');
+            background-size: cover;
+            background-position: center;
+            filter: drop-shadow(0 0 5px rgb(255, 220, 249)); /* Resplandor */
+                }
+        
+        .title-logo-placeholder {
+            width: 250px;
+            height: 60px;
+            background-image: url('logo.png');
+            background-size: cover;
+            background-position: center;
+            filter: drop-shadow(0 0 5px rgb(255, 220, 249)); /* Resplandor */
+                }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-color), #a64dff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 5%;
+    margin-bottom: 4rem;
+    width: 70%;  /* O cualquier porcentaje adecuado */
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 400px;
+    
+}
+        
+        .service-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 168, 255, 0.2);
+            background-color: var(--card-hover);
+        }
+        
+        .service-card h3 {
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-align: center;
+        }
+        
+        .img-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 168, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .service-description {
+            padding: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .contact-section {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--accent-color);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+/* -------------------------------------------------Semaforos---------------------------------------------------- */
+
+.semaforo-container {
+      display: flex;
+      /*background-color: #d4d4d4; /*#e6e7e8;*/
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 30px;
+      
+    }
+
+
+
+.containerSemaforo1 {
+    position: relative; /* Permite posicionar elementos dentro */
+    background-image: url('img/traffic light.png');
+    background-size: 170%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 90vw;
+    max-width: 120px;
+    aspect-ratio: 0.35; /* Mantiene proporción cuadrada */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center; /* Centra el texto horizontalmente */
+    align-items: flex-end; /* Baja el texto al fondo */
+    padding-bottom: 10px; /* Opcional: ajusta el espacio al fondo */
+    font-family: 'Share Tech Mono', monospace;
+    color: #ffffff;
+   
+    
+}
+
+.containerSemaforo1 p {
+    margin: 0; /* Elimina márgenes predeterminados del párrafo */
+    
+}
+
+        .light {
+        position: absolute; /* Posicionamiento específico */
+        left: 50.5%; /* Centra horizontalmente */
+        transform: translateX(-50%); /* Ajusta el centro exacto */
+        width: 42.5%;
+        aspect-ratio: 1; /* Asegura que sean círculos */
+        border-radius: 50%;
+        background-color: #000;
+    }
+
+    /* Posiciones específicas para las luces */
+    .Redlight {
+        top: 25.3%; /* Separación específica */
+        background-color: #120102;
+    }
+
+    .Yellowlight {
+        top: 45.2%; /* Separación específica */
+        background-color: #121001;
+    }
+
+    .Greenlight {
+        top: 64.8%; /* Separación específica */
+        background-color: #010a00;
+    }
+
+
+/* --------------------------------------------Giro----------------------------------------------------- */
+
+    /* Estilo del contenedor */
+        .containerSemaforoGiro {
+    position: relative; /* Permite posicionar elementos dentro */
+    background-image: url('img/Giro.png');
+    background-size: 170%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 90vw;
+    max-width: 120px;
+    aspect-ratio: 0.35; /* Mantiene proporción cuadrada */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center; /* Centra el texto horizontalmente */
+    align-items: flex-end; /* Baja el texto al fondo */
+    padding-bottom: 10px; /* Opcional: ajusta el espacio al fondo */
+    font-family: 'Share Tech Mono', monospace;
+    color: #ffffff;
+    
+}
+
+.containerSemaforoGiro p {
+    margin: 0; /* Elimina márgenes predeterminados del párrafo */
+    
+}
+
+        /* Estilo base para las letras */
+        .lightGiro {
+            position: absolute;
+            left: 50%;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 9999;
+            transform: translateX(-50%);
+            transition: text-shadow 0.3s ease-in-out; /* Transición suave para el resplandor */}
+
+        .RedlightGiro {
+            top: 28.2%;
+            color: #120102;
+        }
+
+        .GreenlightGiro {
+            top: 48%;
+            color: #010a00;
+        }
+
+
+
+
+        #horaActual {
+	    font-size: 22px;
+	    font-family: 'Share Tech Mono', monospace;
+	    color: #ffffff;
+	    text-align: center;
+	    margin-top: 20px;
+        margin-bottom: 20px; /* Espacio debajo del h2 */
+	}
+
+
+/* --------------------------------------------Boton----------------------------------------------------- */
+
+ 
+.boton-container {
+  width: 100%;
+  margin: 0; /* Elimina márgenes externos */
+  padding: 15px; /* Mantén el espaciado interno */
+  
+  box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
+
+  display: flex; /* Activa el modelo de flexbox */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  flex-direction: row; /* Cambia a fila para agrupar horizontalmente flex-direction de column a row.*/
+}
+
+
+
+
+
+
+
+    /* Estilos generales para los botones */
+.boton-container button {
+    background-color: #242323; /* Color de fondo */
+    border: none; /* Sin borde */
+    color: white; /* Color del texto */
+    padding: 15px 32px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como inline-block */
+    font-size: 16px; /* Tamaño del texto */
+    margin: 10px; /* Márgenes entre botones */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+    transition: all 0.3s ease; /* Transición para suavidad */
+     margin-bottom: -25px;
+}
+
+.boton-container button:hover {
+    background-color: #45a049; /* Color al pasar el cursor */
+    transform: scale(1.1); /* Efecto de agrandamiento */
+}
+
+.boton-container button:active {
+    background-color: #3e8e41; /* Color al hacer clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra al hacer clic */
+    transform: scale(0.98); /* Reducir tamaño al hacer clic */
+}
+
+button:disabled {
+    opacity: 0.5;           /* Hace que el botón se vea más tenue */
+    cursor: not-allowed;    /* Cambia el cursor para indicar que no se puede hacer clic */
+    pointer-events: none;   /* Asegura que no reciba clics */
+}
+
+/* Personalización específica para cada botón */
+#BotonON {
+    background-color: #447080; /* Color inicial del botón ON */
+}
+
+#ACCEDER {
+    background-color: #355a68; /* Color inicial del botón ON */
+}
+
+#BotonOFF   {
+    background-color: #d9534f; /* Color inicial del botón OFF */
+}
+
+#BotonON2 {
+    background-color: #447080; /* Color inicial del botón ON (para el segundo set) */
+}
+
+#BotonOFF2 {
+    background-color: #d9534f; /* Color inicial del botón OFF (para el segundo set) */
+}
+
+.pre-semaforo-container {
+      width: 100%;
+      margin: 0; /* Elimina márgenes externos */
+      padding: 15px; /* Mantén el espaciado interno */
+      
+      box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
+    }
+
+
+    .separador {
+      width: 100%;
+      margin: 0; /* Elimina márgenes externos */
+      padding: 15px; /* Mantén el espaciado interno */
+     
+      box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
+    }
+
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div id="triangulo" class="logo-placeholder"></div>
+            <div  class="title-logo-placeholder"></div>
+        </div>
+        <nav>
+            <a href="#contacto" style="color: var(--text-color); text-decoration: none; margin-left: 1rem;">Contacto</a>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Smart City 4.0: Construyendo Ciudades del Futuro, Hoy</h1>
+        <p style="font-size: 23px; ">Imagina una ciudad donde la tecnología trabaja para ti: calles sin congestiones, aire más limpio, y un flujo de tráfico optimizado en tiempo real. En Smart City 4.0, transformamos espacios urbanos en entornos inteligentes, eficientes y sostenible</p>
+        <p> <br> </p>
+        <p> <br> </p>
+
+        <p style="text-align: left; font-size: 19px; color: #ffffff;">Nuestros servicios incluyen:</p>
+        <p> <br> </p>
+        <p style="font-size: 17px; text-align: left;">🚦 Semáforos inteligentes: Controlados desde tu computadora o móvil para adaptarse a las necesidades del tráfico.</p>
+        <p style="font-size: 17px; text-align: left;">🚗 Sistemas de IA: Cálculo automático de la intensidad vehicular para reducir tiempos de espera y evitar congestiones.</p>
+        <p style="font-size: 17px; text-align: left;">🌍 Calidad del aire y agua: Monitoreo y control en tiempo real para garantizar un entorno más saludable.</p>
+        <p style="font-size: 17px; text-align: left;">💡 Alumbrado inteligente: Iluminación eficiente que se adapta a las condiciones del entorno.</p>
+        <p style="font-size: 17px; text-align: left;">💧 Redes sanitarias automatizadas: Optimización en la distribución de agua y gestión de recursos.</p>
+        
+        <p> <br> </p>
+        <p>Con Smart City 4.0, no solo mejoramos la movilidad y la calidad de vida, sino que también construimos un futuro más sostenible y conectado.</p>
+    </section>
+    
+    <div class="services-grid" id="servicios">
+        <div class="service-card">
+            <h3>Sistema de monitoreo de semáforos inteligentes</h3>
+            <p style="font-size: 17px; text-align: center;">Representación simplificada </p>
+            <div id="horaActual">--:--:--</div>
+            <p id="sync" style="font-size: 17px; text-align: center;">Sincronizando Ciclos...</p>
+            
+            
+            <div class="semaforo-container">
+
+             <!-- Semáforo 1 -->
+<div class="containerSemaforo1" id="semaforo1">
+    <div class="light Redlight" id="rojo1"></div>
+    <div class="light Yellowlight" id="amarillo1"></div>
+    <div class="light Greenlight" id="verde1"></div>
+Via 1</div>
+
+<!-- Semáforo 2 -->
+<div class="containerSemaforo1" id="semaforo2">
+    <div class="light Redlight" id="rojo2"></div>
+    <div class="light Yellowlight" id="amarillo2"></div>
+    <div class="light Greenlight" id="verde2"></div>
+Via 2</div>
+
+<!-- Semáforo 3 -->
+<div class="containerSemaforo1" id="semaforo3">
+    <div class="light Redlight" id="rojo3"></div>
+    <div class="light Yellowlight" id="amarillo3"></div>
+    <div class="light Greenlight" id="verde3"></div>
+Via 3</div>
+
+ <!-- Semáforo 4 -->
+<div class="containerSemaforo1" id="semaforo4">
+    <div class="light Redlight" id="rojo4"></div>
+    <div class="light Yellowlight" id="amarillo4"></div>
+    <div class="light Greenlight" id="verde4"></div>
+Via 4</div>
+
+     <!-- Semáforo 5 Giro -->
+<div class="containerSemaforoGiro" id="semaforoGiro1">
+    
+
+    <span class="lightGiro RedlightGiro" id="rojo5">
+<i class="fa-solid fa-arrow-right"></i>
+</span>
+     <div class="" id="amarillo5"></div>
+    <span class="lightGiro GreenlightGiro" id="verde5"> <i class="fa-solid fa-arrow-right"> </i></span>
+
+    
+Giro </div>
+</div>
+
+<!-- -------------------Botones intermitente1---------------------->
+
+<div class="pre-semaforo-container color4"> 
+
+    <p style="text-align: center; font-size: 18px; margin-bottom: -3%;">INTERMITENTE</p>
+   
+       <div class="boton-container color3">
+   
+       <div class="boton-container color3">
+       <button id="BotonON">ON</button>
+       <button id="BotonOFF" disabled >OFF</button>
+       </div>
+       
+                                       </div>
+   
+                                               </div>
+   
+   
+   
+   
+       <div class="separador"></div>
+
+
+
+
+            
+        </div>
+        
+        
+    </div>
+
+
+    <div class="services-grid" id="servicios">
+        <div class="service-card">
+            <div class="pre-semaforo-container color4"> 
+
+                <h3 style="text-align: center;  margin-bottom: -5%; margin-top: -2.5%;">Centro de Monitoreo Ambiental</h3>
+                
+               
+                   <div class="boton-container color3">
+               
+                   <div class="boton-container color3">
+                   <button id="ACCEDER">ACCEDER</button>
+                   </div>
+                   
+                                                   </div>
+               
+                                                           </div>
+ 
+        
+                                                          
+        </div></div>
+
+    
+    <section class="contact-section" id="contacto">
+        <h2>Contáctenos</h2>
+        <p>Estamos listos para ayudarle con su próximo proyecto. No dude en comunicarse con nosotros para una consulta personalizada.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i>📧</i>
+                <span>tuzziotok@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📧</i>
+                <span>davidtuzzi@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📱</i>
+                <span>WhatsApp: (3541)389476</span>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Servicios de Electricidad e IoT. Todos los derechos reservados.</p>
+    </footer>
+
+
+    <script>
+
+        // Variables para el reloj y sincronización
+            let hour = 0, minute = 0, second = 0; // Hora actual
+            let inicio_ciclo = 0; // Bandera para iniciar el ciclo
+            let compara = -1; // Valor para evitar repeticiones
+        
+            let VC1 = 0;
+            let AC1 = 0;
+            let RC1 = 0;
+        
+            let VC2 = 0;
+            let AC2 = 0;
+            let RC2 = 0;
+        
+            let VC3 = 0;
+            let AC3 = 0;
+            let RC3 = 0;
+        
+            let VC4 = 0;
+            let AC4 = 0;
+            let RC4 = 0;
+        
+            let VC5 = 0;
+            let RC5 = 0;
+        
+            let Desfasaje = 65;
+            console.log("Valores iniciales:");
+            imprimirValores();  
+            cambiarValores();
+            console.log("Valores modificados:");
+            imprimirValores();
+        
+        
+            const C1 = VC1 + AC1 + RC1;
+            const C2 = VC2 + AC2 + RC2;
+            const C3 = VC3 + AC3 + RC3;
+            const C4 = VC4 + AC4 + RC4;
+            const C5 = VC5 + RC5;
+        
+            const SumC1 = VC1+AC1+RC1;
+            const SumC2 = VC2+AC2+RC2;
+            const SumC3 = VC3+AC3+RC3;
+            const SumC4 = VC4+AC4+RC4;
+        
+             // Ajusta el desfasaje según sea necesario
+            const Ciclo = C1 + C2 + C3 + C4 + C5; // Duración total del ciclo en segundos
+        
+        
+        function imprimirValores() {
+            console.log("Valores por Serial:");
+            console.log(`VC1: ${VC1}, AC1: ${AC1}, RC1: ${RC1}`);
+            console.log(`VC2: ${VC2}, AC2: ${AC2}, RC2: ${RC2}`);
+            console.log(`VC3: ${VC3}, AC3: ${AC3}, RC3: ${RC3}`);
+            console.log(`VC4: ${VC4}, AC4: ${AC4}, RC4: ${RC4}`);
+            console.log(`VC5: ${VC5}, RC5: ${RC5}, Desf: ${Desfasaje}`);
+        }
+        
+           
+        
+        function cambiarValores(){
+             VC1 = 30;
+             AC1 = 3;
+             RC1 = 1;
+        
+             VC2 = 30;
+             AC2 = 3;
+             RC2 = 1;
+        
+             VC3 = 10;
+             AC3 = 3;
+             RC3 = 1;
+        
+             VC4 = 10;
+             AC4 = 3;
+             RC4 = 1;
+        
+             VC5 = 10;
+             RC5 = 1;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // Simula la conexión TCP para obtener la hora actual
+            function syncTime() {
+                // Aquí deberías implementar la conexión TCP para obtener la hora real
+                hour = 21;
+                minute = 11;
+                second = 50;
+            }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+           let tRealSeg; // Definir tRealSeg globalmente
+           let inicioCicloActual;
+           let tiempoCiclo
+        
+        
+        /* 
+            function checkSync():
+        
+        Obtiene la hora del sistema y la convierte a segundos (tRealSeg).
+        Ajusta el desfasaje (tRealSinDesf) y calcula en qué ciclo se encuentra.
+        Determina el tiempo dentro del ciclo actual (tiempoCiclo).
+        Si es el inicio del ciclo, establece inicio_ciclo = 1
+        
+        */
+        
+           function checkSync() {
+        
+            // Obtiene la hora actual del sistema
+            const ahora = new Date();
+            const hour = ahora.getHours(); // Horas (0-23)
+            const minute = ahora.getMinutes(); // Minutos (0-59)
+            const second = ahora.getSeconds(); // Segundos (0-59)
+        
+        
+        
+            tRealSeg = hour * 3600 + minute * 60 + second; // Tiempo real en segundos
+            const tRealSinDesf = tRealSeg - Desfasaje; // Ajuste con desfasaje
+            const nciclos = Math.floor(tRealSinDesf / Ciclo); // Número de ciclos completos
+            const inicioCicloPrevio = nciclos * Ciclo + Desfasaje; // Inicio del ciclo previo
+            inicioCicloActual = nciclos * Ciclo + Desfasaje; // Inicio del ciclo actual
+            tiempoCiclo = tRealSeg - inicioCicloActual; // Tiempo dentro del ciclo actual
+        
+            
+        
+             // Mostrar la hora actual en la página
+            const horaTexto = `Hora actual: ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
+            document.getElementById("horaActual").textContent = horaTexto;
+        
+           
+            console.log(`Inicio ciclo actual: ${inicioCicloActual}`);
+            console.log(`Diferencia con ciclo actual: ${tiempoCiclo}`);
+        
+            // Detectar si estamos en el inicio del ciclo actual
+            if (tRealSeg >= inicioCicloActual - 1 && tRealSeg <= inicioCicloActual + 1) {
+                if (compara !== inicioCicloActual) {
+                    inicio_ciclo = 1; // Iniciar ciclo
+                    compara = inicioCicloActual; // Evitar múltiples inicios
+                    console.log(`Ciclo iniciado en: ${inicioCicloActual}`);
+                }
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        function actualizarSemaforosAvenida1(rojo1, amarillo1, verde1, rojo2, amarillo2, verde2, rojo3, amarillo3, verde3, rojo4, amarillo4, verde4, rojo5, amarillo5, verde5) {
+            actualizarSemaforo('rojo1', 'amarillo1', 'verde1', rojo1, amarillo1, verde1);
+            actualizarSemaforo('rojo2', 'amarillo2', 'verde2', rojo2, amarillo2, verde2);
+            actualizarSemaforo('rojo3', 'amarillo3', 'verde3', rojo3, amarillo3, verde3);
+            actualizarSemaforo('rojo4', 'amarillo4', 'verde4', rojo4, amarillo4, verde4);
+            actualizarSemaforo('rojo5', 'amarillo5', 'verde5', rojo5, amarillo5, verde5);
+        }
+        
+        function actualizarSemaforo(rojoId, amarilloId, verdeId, rojo, amarillo, verde) {
+            const idsTexto = ['rojo5', 'amarillo5', 'verde5', 'rojo10', 'amarillo10', 'verde10'];
+        
+            const rojoElement = document.getElementById(rojoId);
+            if (idsTexto.includes(rojoId)) {
+                rojoElement.style.color = rojo == 1 ? '#942626' : '#120102';
+                rojoElement.style.textShadow = rojo == 1 ? '0 0 30px #942626' : 'none';
+            } else {
+                rojoElement.style.backgroundColor = rojo == 1 ? '#942626' : '#120102';
+                rojoElement.style.boxShadow = rojo == 1 ? '0 0 30px 10px #942626' : 'none';
+            }
+        
+            const amarilloElement = document.getElementById(amarilloId);
+            if (idsTexto.includes(amarilloId)) {
+                amarilloElement.style.color = amarillo == 1 ? '#948726' : '#121001';
+                amarilloElement.style.textShadow = amarillo == 1 ? '0 0 30px #948726' : 'none';
+            } else {
+                amarilloElement.style.backgroundColor = amarillo == 1 ? '#948726' : '#121001';
+                amarilloElement.style.boxShadow = amarillo == 1 ? '0 0 30px 10px #948726' : 'none';
+            }
+        
+            const verdeElement = document.getElementById(verdeId);
+            if (idsTexto.includes(verdeId)) {
+                verdeElement.style.color = verde == 1 ? '#429426' : '#010a00';
+                verdeElement.style.textShadow = verde == 1 ? '0 0 30px #429426' : 'none';
+            } else {
+                verdeElement.style.backgroundColor = verde == 1 ? '#429426' : '#010a00';
+                verdeElement.style.boxShadow = verde == 1 ? '0 0 30px 10px #429426' : 'none';
+            }
+        }
+        
+        
+        
+        
+        
+        let intermitente = false;
+        
+        
+        
+        
+        
+        //funcion para alternar ciclos
+        function updateTrafficLight() {
+            if (inicio_ciclo === 0) {
+        
+        
+        
+               
+        
+        
+        if (second % 2 === 0) {
+            
+            if (intermitente) {
+                actualizarSemaforo('rojo1', 'amarillo1', 'verde1', 0, 0, 0);
+                actualizarSemaforo('rojo2', 'amarillo2', 'verde2', 0, 0, 0);
+                actualizarSemaforo('rojo3', 'amarillo3', 'verde3', 0, 0, 0);
+                actualizarSemaforo('rojo4', 'amarillo4', 'verde4', 0, 0, 0);
+                actualizarSemaforo('rojo5', 'amarillo5', 'verde5', 0, 0, 0);
+            } else {
+                actualizarSemaforo('rojo1', 'amarillo1', 'verde1', 0, 1, 0);
+                actualizarSemaforo('rojo2', 'amarillo2', 'verde2', 0, 1, 0);
+                actualizarSemaforo('rojo3', 'amarillo3', 'verde3', 0, 1, 0);
+                actualizarSemaforo('rojo4', 'amarillo4', 'verde4', 0, 1, 0);
+                actualizarSemaforo('rojo5', 'amarillo5', 'verde5', 1, 0, 0);
+            }
+            intermitente = !intermitente; // Alternar el estado
+        }
+        
+        
+        
+        
+             }else {
+                document.getElementById("sync").innerHTML = "Sincronizado";
+                console.log(`Tiempo: ${tiempoCiclo}`);
+                //-------------------Tiempo  Via 1------------------------------
+                if (tiempoCiclo >= 0 && tiempoCiclo < VC1) {
+                    actualizarSemaforo('rojo1', 'amarillo1', 'verde1', 0, 0, 1);
+                    actualizarSemaforo('rojo2', 'amarillo2', 'verde2', 1, 0, 0);
+                    actualizarSemaforo('rojo3', 'amarillo3', 'verde3', 1, 0, 0);
+                    actualizarSemaforo('rojo4', 'amarillo4', 'verde4', 1, 0, 0);
+                    actualizarSemaforo('rojo5', 'amarillo5', 'verde5', 1, 0, 0);
+                } else if (tiempoCiclo >= VC1 && tiempoCiclo < (VC1+AC1)) {
+                    actualizarSemaforo('rojo1', 'amarillo1', 'verde1', 0, 1, 0);
+                    /*actualizarSemaforo('rojo2', 'amarillo2', 'verde2', 1, 0, 0);
+                    actualizarSemaforo('rojo3', 'amarillo3', 'verde3', 1, 0, 0);
+                    actualizarSemaforo('rojo4', 'amarillo4', 'verde4', 1, 0, 0);
+                    actualizarSemaforo('rojo5', 'amarillo5', 'verde5', 1, 0, 0);*/
+                } else if (tiempoCiclo >= (VC1+AC1) && tiempoCiclo < (VC1+AC1+RC1)) {
+                    actualizarSemaforo('rojo1', 'amarillo1', 'verde1', 1, 0, 0);
+                }
+                //-------------------Tiempo  Via 2------------------------------
+                  if (tiempoCiclo >= (SumC1) && tiempoCiclo < (VC2+SumC1)) {            
+                    actualizarSemaforo('rojo2', 'amarillo2', 'verde2', 0, 0, 1);            
+                } else if (tiempoCiclo >= (VC2+SumC1) && tiempoCiclo < (VC2+AC2+SumC1)) {            
+                    actualizarSemaforo('rojo2', 'amarillo2', 'verde2', 0, 1, 0);            
+                } else if (tiempoCiclo >= (VC2+AC2+SumC1) && tiempoCiclo < (VC2+AC2+RC2+SumC1)) {
+                    actualizarSemaforo('rojo2', 'amarillo2', 'verde2', 1, 0, 0);
+                }
+                 //-------------------Tiempo  Via 3------------------------------
+                  if (tiempoCiclo >= (SumC1+SumC2) && tiempoCiclo < (VC3+SumC1+SumC2)) {
+                    actualizarSemaforo('rojo3', 'amarillo3', 'verde3', 0, 0, 1);            
+                } else if (tiempoCiclo >= (VC3+SumC1+SumC2) && tiempoCiclo < (VC3+AC3+SumC1+SumC2)) {
+                    actualizarSemaforo('rojo3', 'amarillo3', 'verde3', 0, 1, 0);            ;
+                } else if (tiempoCiclo >= (VC3+AC3+SumC1+SumC2) && tiempoCiclo < (VC3+AC3+RC3+SumC1+SumC2)) {
+                    actualizarSemaforo('rojo3', 'amarillo3', 'verde3', 1, 0, 0);
+                }
+                //-------------------Tiempo  Via 4------------------------------
+                  if (tiempoCiclo >= (SumC1+SumC2+SumC3) && tiempoCiclo < (VC4+SumC1+SumC2+SumC3)) {
+                    actualizarSemaforo('rojo4', 'amarillo4', 'verde4', 0, 0, 1);            
+                } else if (tiempoCiclo >= (VC4+SumC1+SumC2+SumC3) && tiempoCiclo < (VC4+AC4+SumC1+SumC2+SumC3)) {
+                    actualizarSemaforo('rojo4', 'amarillo4', 'verde4', 0, 1, 0);            ;
+                } else if (tiempoCiclo >= (VC4+AC4+SumC1+SumC2+SumC3) && tiempoCiclo < (VC4+AC4+RC4+SumC1+SumC2+SumC3)) {
+                    actualizarSemaforo('rojo4', 'amarillo4', 'verde4', 1, 0, 0);
+                }
+        
+        
+        
+        
+                if (tiempoCiclo >= (SumC1+SumC2+SumC3+SumC4) && tiempoCiclo < (SumC1+SumC2+SumC3+SumC4+VC5)) {
+                    actualizarSemaforo('rojo5', 'amarillo5', 'verde5', 0, 0, 1);
+                    actualizarSemaforo('rojo1', 'amarillo1', 'verde1', 1, 0, 0);
+                } else if (tiempoCiclo >= (SumC1+SumC2+SumC3+SumC4+VC5) && tiempoCiclo < (SumC1+SumC2+SumC3+SumC4+VC5+RC5)) {
+                    actualizarSemaforo('rojo5', 'amarillo5', 'verde5', 1, 0, 0);
+                    actualizarSemaforo('rojo1', 'amarillo1', 'verde1', 1, 0, 0);
+                }
+        
+                if (tiempoCiclo >= (SumC1+SumC2+SumC3+SumC4+VC5) && tiempoCiclo < Ciclo) {
+                    if (inicio_ciclo === 1) {
+                        inicio_ciclo = 0;
+                        console.log('Esperando reinicio de ciclo...');
+                    }
+                }
+            }
+        
+        }
+        
+        
+        
+
+
+ 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*
+        setInterval((): Bucle de actualización
+        
+        Cada segundo:
+            Incrementa el reloj.
+            Llama a checkSync() para verificar el ciclo.
+            Llama a updateTrafficLight() para actualizar el semáforo.
+        
+        */
+        
+        
+        // Actualizar segundo a segundo
+        secuencia=setInterval(() => {
+                second++;
+                if (second === 60) {
+                    second = 0;
+                    minute++;
+                    if (minute === 60) {
+                        minute = 0;
+                        hour++;
+                        if (hour === 24) hour = 0;
+                    }
+                }
+                //updateClock();
+        
+                checkSync();
+                updateTrafficLight();
+        
+            }, 1000);
+        
+        
+        
+        
+        
+        // Sincronizar la hora al iniciar
+            syncTime();
+            cambiarValores();
+
+
+
+
+        
+
+
+
+
+//Boton intermitente On ----------------------------------------------------------------------------------------------------
+  
+document.getElementById("BotonON").addEventListener("click", function () {
+
+console.log('Intermitente On');
+clearInterval(secuencia);
+document.getElementById("BotonOFF").disabled = false; 
+document.getElementById("BotonON").disabled = true; 
+
+let intOn = 1;
+let intermitente = false; // Mover fuera del setInterval
+
+function actualizarSemaforo(rojoId, amarilloId, verdeId, rojo, amarillo, verde) {
+const idsTexto = ['rojo5', 'amarillo5', 'verde5', 'rojo10', 'amarillo10', 'verde10'];
+
+const rojoElement = document.getElementById(rojoId);
+if (idsTexto.includes(rojoId)) {
+    rojoElement.style.color = rojo == 1 ? '#942626' : '#120102';
+    rojoElement.style.textShadow = rojo == 1 ? '0 0 30px #942626' : 'none';
+} else {
+    rojoElement.style.backgroundColor = rojo == 1 ? '#942626' : '#120102';
+    rojoElement.style.boxShadow = rojo == 1 ? '0 0 30px 10px #942626' : 'none';
+}
+
+const amarilloElement = document.getElementById(amarilloId);
+if (idsTexto.includes(amarilloId)) {
+    amarilloElement.style.color = amarillo == 1 ? '#948726' : '#121001';
+    amarilloElement.style.textShadow = amarillo == 1 ? '0 0 30px #948726' : 'none';
+} else {
+    amarilloElement.style.backgroundColor = amarillo == 1 ? '#948726' : '#121001';
+    amarilloElement.style.boxShadow = amarillo == 1 ? '0 0 30px 10px #948726' : 'none';
+}
+
+const verdeElement = document.getElementById(verdeId);
+if (idsTexto.includes(verdeId)) {
+    verdeElement.style.color = verde == 1 ? '#429426' : '#010a00';
+    verdeElement.style.textShadow = verde == 1 ? '0 0 30px #429426' : 'none';
+} else {
+    verdeElement.style.backgroundColor = verde == 1 ? '#429426' : '#010a00';
+    verdeElement.style.boxShadow = verde == 1 ? '0 0 30px 10px #429426' : 'none';
+}
+}
+
+// Definir antes de su uso
+function actualizarSemaforosAvenida1(rojo1, amarillo1, verde1, rojo2, amarillo2, verde2, rojo3, amarillo3, verde3, rojo4, amarillo4, verde4, rojo5, amarillo5, verde5) {
+actualizarSemaforo('rojo1', 'amarillo1', 'verde1', rojo1, amarillo1, verde1);
+actualizarSemaforo('rojo2', 'amarillo2', 'verde2', rojo2, amarillo2, verde2);
+actualizarSemaforo('rojo3', 'amarillo3', 'verde3', rojo3, amarillo3, verde3);
+actualizarSemaforo('rojo4', 'amarillo4', 'verde4', rojo4, amarillo4, verde4);
+actualizarSemaforo('rojo5', 'amarillo5', 'verde5', rojo5, amarillo5, verde5);
+}
+
+// Actualizar segundo a segundo
+intermitenteInterval = setInterval(() => {
+    if (intOn === 1) {
+        if (intermitente) {
+            actualizarSemaforosAvenida1(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        } else {
+            actualizarSemaforosAvenida1(0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0);
+        }
+        intermitente = !intermitente; // Alternar el estado
+    }
+    
+    
+    
+    //boton Off
+document.getElementById("BotonOFF").addEventListener("click", function () {
+console.log('Reiniciando la página...');
+location.reload();  // Reinicia la página
+});
+
+
+
+}, 1000);
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+    </script>
+
+<script>
+        
+    document.getElementById('ACCEDER').addEventListener('click', function() {
+        window.location.href = 'calidad.html';
+    });
+        </script>
+
+    
+
+
+</body>
+</html>
