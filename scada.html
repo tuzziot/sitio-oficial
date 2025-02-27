@@ -220,14 +220,16 @@
 /*------------------------------------PLC S7-1200---------------------*/
 
 .container {
-   
+    width: 920px; /* Usa un porcentaje para adaptarse al tamaño del navegador */
     max-width: 920px; /* Limita el ancho máximo */
     position: relative;
     border: 0px solid #444;
-    
+    padding: 20px;
+    box-sizing: border-box; /* Incluye padding dentro del ancho total */
     
     border-radius: 10px;
-    margin: 0 auto; /* Esto centra el contenedor horizontalmente */
+    background-position: center;
+    margin-top: 35px;
 }
         .PLC {
     width: 600px; /* Ancho fijo en píxeles */
@@ -555,9 +557,10 @@
                
         
     
-                    <h2 style="margin-top: 100px;">Control a distancia de plc S7-1200</h2> 
+                    
 
                     <div class="container">
+                        <h2 style="margin-top: 100px;">Control a distancia de plc S7-1200</h2> 
                         <div class="PLC">
                             <div class="Leds" id="I0"></div>
                             <div class="Leds" id="I1"></div>
